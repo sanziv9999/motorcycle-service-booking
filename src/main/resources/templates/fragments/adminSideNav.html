@@ -1,0 +1,70 @@
+<div th:fragment="adminSideNav">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <div class="d-flex sidebar-profile">
+              <div class="sidebar-profile-image">
+                <img src="" alt="image">
+                <span class="sidebar-status-indicator"></span>
+              </div>
+              <div class="sidebar-profile-name">
+                <p class="sidebar-name" th:text="${session.username}">
+                 
+                </p>
+                <p class="sidebar-designation">
+                  Welcome
+                </p>
+              </div>
+            </div>
+            <div class="nav-search">
+              <div class="input-group">
+              
+                <input type="text" class="form-control" placeholder="Type to search..." aria-label="search" aria-describedby="search">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="search">
+                    <i class="typcn typcn-zoom"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p class="sidebar-menu-title">Dash menu</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="adminDash" onclick="removePathVariable()">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="serviceBookedPage" onclick="removePathVariable()">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Booked Details</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="bikeCompanyAndModels" onclick="removePathVariable()">
+              <i class="mdi mdi-motorbike menu-icon"></i>
+              <span class="menu-title">Bike Company</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="servicesTypes" onclick="removePathVariable()">
+              <i class="typcn typcn-spanner menu-icon"></i>
+              <span class="menu-title">Services</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="StockManagement" onclick="removePathVariable()">
+              <i class="typcn typcn-spanner menu-icon"></i>
+              <span class="menu-title">Stocks</span>
+            </a>
+          </li>
+        </ul>
+        
+      </nav>
+      
+      </div>

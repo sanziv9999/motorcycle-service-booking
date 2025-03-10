@@ -1,0 +1,172 @@
+<div th:fragment="serviceBookedPage">
+    <div class="container-fluid page-body-wrapper">
+    
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles primary"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+      
+      
+	   <div th:replace="~{fragments/adminSideNav :: adminSideNav}">
+	   </div>
+        
+	    <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0 font-weight-bold" th:text="${session.username}"></h3>
+                <br>
+              
+              </div>
+              <div class="col-sm-6">
+                <div class="d-flex align-items-center justify-content-md-end">
+                  <div class="mb-3 mb-xl-0 pr-1">
+                      <div class="dropdown">
+                        <button class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3" data-x-placement="top-start">
+                          <h6 class="dropdown-header">Last 14 days</h6>
+                          <a class="dropdown-item" href="#">Last 21 days</a>
+                          <a class="dropdown-item" href="#">Last 28 days</a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="pr-1 mb-3 mr-2 mb-xl-0">
+                    <button type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-arrow-forward-outline mr-2"></i>Export</button>
+                  </div>
+                  <div class="pr-1 mb-3 mb-xl-0">
+                    <button type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-info-large-outline mr-2"></i>info</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+     
+<div class="card-body">
+    <h4 class="card-title">Service Booked List</h4>
+    <!-- Search bar -->
+    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search...">
+    <div class="table-responsive pt-3">
+        <table id="dataTable" class="table table-bordered table-hover">
+            <!-- Table header -->
+             <thead >
+                        <tr >
+                          <th>
+                            id
+                          </th>
+                          <th>
+                            Username
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                          <th>
+                            Bike Company
+                          </th>
+                          <th>
+                            Bike Model
+                          </th>
+                          <th>
+                            Vehicle No
+                          </th>
+                          <th>
+                            Applied Date
+                          </th>
+                          <th>
+                            Booked Date
+                          </th>
+                            <th>
+                            Service Type
+                          </th>  
+                          <th>
+                            Service Name
+                          </th>
+                          <th>
+                            Status
+                          </th>
+                          <th>Action
+                          </th>
+                        </tr>
+                      </thead>
+            <tbody>
+               
+                        <tr th:each="sb:${sbList}">
+                          <td th:text="${sb.id}"></td>
+                          <td th:text="${sb.username}"></td>
+                          <td th:text="${sb.email}"></td>
+                          <td th:text="${sb.companyName}"></td>
+                          <td th:text="${sb.bikeModel}"></td>
+                          <td th:text="${sb.vehicleNo}"></td>
+                          <td th:text="${sb.appliedDate}"></td>
+                          <td th:text="${sb.date}"></td>
+                          <td th:text="${sb.serviceType}"></td>
+                          <td th:text="${sb.serviceName}"></td>
+       					<td th:text="${sb.status}"></td>
+						<td>
+						<div class="btn-group" role="group" aria-label="Edit and Delete Buttons">
+						 <a th:href="@{'/statusEdit/'+${sb.id}}" type="button btn" class="btn btn-sm btn-secondary btn-icon-text">Edit                    
+	                        </a>
+                        <a th:href="@{'/deleteData/'+${sb.id}}" type="button btn" class="btn btn-sm btn-danger btn-icon-text">Delete                       
+	                        </a>
+							</td>	
+						</div>
+
+                        </tr>
+             
+			            </tbody>
+			        </table>
+			    </div>
+			    <!-- Pagination -->
+			    <nav aria-label="Page navigation example">
+			        <ul class="pagination justify-content-end">
+			            <!-- Pagination links will be inserted here dynamically -->
+			        </ul>
+			    </nav>
+			</div>
+
+                    
+                  
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+                    
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">MotoMend</a> 2024</span>
+            
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+      </div>
+      
+
+        
+        </div>

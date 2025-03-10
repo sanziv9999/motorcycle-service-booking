@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+    <!-- base:css -->
+    <link rel="stylesheet" th:href="@{/admin/vendors/typicons.font/font/typicons.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject --> 
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" th:href="@{/admin/css/vertical-layout-light/style.css}">
+    <!-- endinject -->
+    <link rel="shortcut icon" th:href="@{/admin/images/favicon.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="/admin/vendors/mdi/css/materialdesignicons.min.css">
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+     <div th:replace="~{fragments/adminNav :: adminNav}">
+     
+     </div>
+      
+
+	<div th:replace="~{fragments/serviceBookedPage :: serviceBookedPage}"></div>
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="/admin/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="/admin/js/off-canvas.js"></script>
+    <script src="/admin/js/hoverable-collapse.js"></script>
+    <script src="/admin/js/template.js"></script>
+    <script src="admin/js/settings.js"></script>
+    <script src="admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="/admin/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="admin/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="/admin/js/dashboard.js"></script>
+    <script th:src="@{/js/urlreset.js}"></script>
+    <!-- Add jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	        // Pagination
+	        var rowsPerPage = 4;
+	        var table = $('#dataTable');
+	        var rows = table.find('tbody tr');
+	        var pageCount = Math.ceil(rows.length / rowsPerPage);
+	        var currentPage = 1;
+	
+	        function showPage(page) {
+	            var start = (page - 1) * rowsPerPage;
+	            var end = start + rowsPerPage;
+	            rows.hide();
+	            rows.slice(start, end).show();
+	        }
+	
+	        // Show first page initially
+	        showPage(currentPage);
+	
+	        // Handle pagination clicks
+	        $('.pagination').on('click', 'a', function(e) {
+	            e.preventDefault();
+	            currentPage = parseInt($(this).text());
+	            showPage(currentPage);
+	        });
+	
+	        // Generate pagination links dynamically
+	        for (var i = 1; i <= pageCount; i++) {
+	            $('.pagination').append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+	        }
+	
+	        // Search functionality
+	        $('#searchInput').keyup(function() {
+	            var searchText = $(this).val().toLowerCase();
+	            rows.hide().filter(function() {
+	                return $(this).text().toLowerCase().indexOf(searchText) !== -1;
+	            }).show();
+	        });
+	    });
+	</script>
+    
+
+ 
+    
+  </body>
+</html>

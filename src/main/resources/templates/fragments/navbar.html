@@ -1,0 +1,350 @@
+
+<div th:fragment="navbar">
+    <div th:if="${session.username == null}">
+      <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+		    <a href="home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+		        <h2 class="m-0 text-primary"><i class="fa fa-motorcycle me-3"></i>MotoMend</h2>
+		    </a>
+		    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+		        <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarCollapse">
+		        <div class="navbar-nav ms-auto p-4 p-lg-0">
+		            <a href="home" class="nav-item nav-link active">Home</a>
+		            <a href="about" class="nav-item nav-link">About</a>
+		            <a href="service" class="nav-item nav-link">Services</a>
+		            <a href="contact" class="nav-item nav-link">Contact</a>
+		        </div>
+		        <div class="d-lg-none mb-3">
+		            <a href="" class="btn btn-primary py-2 px-lg-5" data-bs-toggle="modal" data-bs-target="#LoginModal">Login<i class="fa fa-arrow-right ms-3"></i></a>
+		        </div>
+		    </div>
+		    <div class="d-none d-lg-block">
+		        <a href="" class="btn btn-primary py-4 px-lg-5" data-bs-toggle="modal" data-bs-target="#LoginModal">Login<i class="fa fa-arrow-right ms-3"></i></a>
+		    </div>
+		</nav>
+    </div>
+    <div th:if="${session.username != null} and ${session.role == 'customer'}">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+            <a href="home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <h2 class="m-0 text-primary"><i class="fa fa-motorcycle me-3"></i>MotoMend</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="home" class="nav-item nav-link active">Home</a>
+                    <a href="about" class="nav-item nav-link">About</a>
+                    <a href="service" class="nav-item nav-link">Services</a>
+                    <a href="contact" class="nav-item nav-link">Contact</a>
+                </div>
+                 <div class="d-lg-none mb-3">
+		            <a href="dashboard" class="btn btn-primary py-2 px-lg-5">Dashboard<i class="fa fa-arrow-right ms-3"></i></a>
+		        </div>
+                <a href="dashboard" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Dashboard<i class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+        </nav>
+    </div>
+    <div th:if="${session.username != null} and ${session.role == 'admin'}">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+            <a href="home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <h2 class="m-0 text-primary"><i class="fa fa-motorcycle me-3"></i>MotoMend</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="home" class="nav-item nav-link active">Home</a>
+                    <a href="about" class="nav-item nav-link">About</a>
+                    <a href="service" class="nav-item nav-link">Services</a>
+                    <a href="contact" class="nav-item nav-link">Contact</a>
+                </div>
+                    <div class="d-lg-none mb-3">
+		            <a href="adminDash" class="btn btn-primary py-2 px-lg-5">Dashboard<i class="fa fa-arrow-right ms-3"></i></a>
+		        </div>
+                
+                <a href="adminDash" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Dashboard<i class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+        </nav>
+    </div>
+
+
+	
+	<!-- Modal -->
+		<div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary">
+		        <div class="d-flex justify-content-between align-items-center w-100">
+		          <h1 class="modal-title text-center w-100 fs-5 text-white">Login Form</h1>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        </div>
+		      </div>
+		      <div class="modal-body">
+		        <form action="login" method="post">
+		          <div class="row mb-3">
+		            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+		            <div class="col-sm-10">
+		              <div class="input-group">
+		                <input type="email" class="form-control" name="email" id="inputEmail3" required="required">
+		                <span class="input-group-text bg-light"><i class="bi bi-envelope-fill"></i></span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="row mb-3">
+		            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+		            <div class="col-sm-10">
+		              <div class="input-group">
+		                <input type="password" class="form-control" name="password" id="inputPassword3" required="required">
+		                <button class="btn btn-light" type="button" id="password-toggle">
+		                  <i id="password-icon" class="bi bi-eye-slash"></i>
+		                </button>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="col text-center">
+		              <a href="" class="forgot-password mb-2" data-bs-toggle="modal" data-bs-target="#ForgotPasswordModal">Forgot Password?</a>
+		              <br><br>
+		              <button type="submit" class="btn btn-primary col-md-4">Login</button>
+		              <br><br>
+		              Don't have an account? <span class="signup-link" data-bs-toggle="modal" data-bs-target="#SignupModal">Sign up</span>
+		            </div>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="ForgotPasswordModal" tabindex="-1" aria-labelledby="ForgotPasswordModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary">
+		        <div class="d-flex justify-content-between align-items-center w-100">
+		          <h1 class="modal-title text-center w-100 fs-5 text-white">Forgot Password</h1>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        </div>
+		      </div>
+		      <div class="modal-body">
+		        <form action="otpSender" method="post">
+		        <p><b>Note:</b> Please enter the registered email </p>
+		          <div class="row mb-3">
+		 
+		            <label for="inoutEmail" class="col-sm-2 col-form-label">Email</label>
+		            <div class="col-sm-10">
+		              <div class="input-group">
+		                <input type="email" class="form-control" name="email" id="inputEmail3" required="required">
+		                <span class="input-group-text bg-light"><i class="bi bi-envelope-fill"></i></span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="col text-center">
+		              <a href="" class="forgot-password mb-2">Remembered Password?</a>
+		              <br><br>
+		              <button type="submit" class="btn btn-primary col-md-4">Send</button>
+		              <br><br>
+		            </div>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		
+		<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary">
+		        <div class="d-flex justify-content-between align-items-center w-100">
+		          <h1 class="modal-title text-center w-100 fs-5 text-white">Forgot Password</h1>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        </div>
+		      </div>
+		      <div class="modal-body">
+		        <form action="checkOtp" method="post">
+		        <p><b>Note:</b> Please enter the otp send on <span th:text="${session.email}"></span> </p>
+		          <div class="row mb-3">
+		 
+		            <label for="inputOTP" class="col-sm-2 col-form-label">OTP</label>
+		            <div class="col-sm-10">
+		              <div class="input-group">
+		                <input type="text" class="form-control" name="otpcode" id="inputOtp" required="required">
+		                <span class="input-group-text bg-light"><i class="bi bi-key-fill"></i></span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="col text-center">
+		              <br><br> 
+		              <button type="submit" class="btn btn-primary col-md-4">Send</button>
+		              <br><br>
+		            </div>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	
+		<div class="modal fade" id="newPasswordModal" tabindex="-1" aria-labelledby="newPasswordModal" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary">
+		        <div class="d-flex justify-content-between align-items-center w-100">
+		          <h1 class="modal-title text-center w-100 fs-5 text-white">Forgot Password</h1>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        </div>
+		      </div>
+		      <div class="modal-body">
+		        <form action="newPassword" method="post">
+		        <p><b>Note:</b> Please enter new password for <span th:text="${session.email}"></span> </p>
+		          <div class="row mb-3">
+		 
+		            <label for="inputnewpassword" class="col-sm-2 col-form-label">New Password</label>
+		            <div class="col-sm-10">
+		              <div class="input-group">
+		                <input type="text" class="form-control" name="newPassword" id="newPassword" required="required">
+		                <span class="input-group-text bg-light"><i class="bi bi-key-fill"></i></span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="col text-center">
+		              <br><br>
+		              <button type="submit" class="btn btn-primary col-md-4">Confirm</button>
+		              <br><br>
+		            </div>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	
+		<div class="modal fade" id="SignupModal" tabindex="-1" aria-labelledby="SignupModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header bg-primary">
+		        <div class="d-flex justify-content-between align-items-center w-100">
+		          <h1 class="modal-title text-center w-100 fs-5 text-white">Signup Form</h1>
+		          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        </div>
+		      </div>
+		      <div class="modal-body">
+		       <form action="register" method="post" onsubmit="return validateForm()">
+		  <div class="row mb-3">
+		    <label for="inputSignupUsername" class="col-sm-2 col-form-label">Username</label>
+		    <div class="col-sm-10">
+		      <div class="input-group">
+		        <input type="text" class="form-control" name="username" id="username" required="required">
+		        <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+		      </div>
+		    </div>
+		  </div>
+   		<div class="row mb-3">
+		    <label for="inputSignupEmail" class="col-sm-2 col-form-label">Email</label>
+		    <div class="col-sm-10">
+		      <div class="input-group">
+		        <input type="email" class="form-control" name="email" id="email" required="required">
+		        <span class="input-group-text bg-light"><i class="bi bi-envelope-fill"></i></span>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="row mb-3">
+		    <label for="inputSignupPassword" class="col-sm-2 col-form-label">Password</label>
+		    <div class="col-sm-10">
+		      <div class="input-group">
+		        <input type="password" class="form-control" name="password" id="password" required="required">
+		        <button class="btn btn-light" type="button" id="signup-password-toggle">
+		          <i id="signup-password-icon" class="bi bi-eye-slash"></i>
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="row mb-3">
+		    <label for="inputSignupPhone" class="col-sm-2 col-form-label">Phone</label>
+		    <div class="col-sm-10">
+		      <div class="input-group">
+		        <input type="text" class="form-control" name="phone" id="phoneNo" required="required">
+		          <span class="input-group-text bg-light"><i class="bi bi-phone"></i></span>
+		
+		      </div>
+		    </div>
+		  </div>
+		  
+		  <input type="hidden" name="role" value="customer">
+		  
+		  <div class="row">
+		    <div class="col text-center">
+		      <button type="submit" class="btn btn-primary col-md-4">Signup</button>
+		      <br><br>
+		      Already have an account? <span class="login-link"  data-bs-toggle="modal" data-bs-target="#LoginModal">Login</span>
+		    </div>
+		  </div>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:if="${message!=null}">
+<div class="modal fade custom-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title" id="exampleModalLabel">Login Successful!</h5>
+            </div>
+            <div class="modal-body">
+                <p th:text="${message}"></p>
+        
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:if="${errormessage!=null}">
+<div class="modal fade custom-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops!!</h5>
+            </div>
+            <div class="modal-body">
+              
+                 <p th:text="${errormessage}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:if="${logoutMessage!=null}">
+<div class="modal fade custom-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-alert">
+                <h5 class="modal-title" id="exampleModalLabel">Logout Successful</h5>
+            </div>
+            <div class="modal-body">
+                 <p th:text="${logoutMessage}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+	
+
+
+
+</div>
